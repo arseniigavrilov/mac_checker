@@ -1,0 +1,63 @@
+.inputWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    width: 320px;
+
+    & p {
+        font-size: 18px;
+        color: white;
+    }
+
+    gap: 10px;
+}
+
+.inputLabel {
+    margin: 0;
+    padding: 0;
+    width: calc(100% - 10px);
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    font-family: "Roboto Mono", monospace;
+    transition: 0.2s all linear;
+}
+
+.customInput {
+    width: inherit;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background: hsl(214, 23%, 20%);
+    border: 1px solid white;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: "Roboto Mono", monospace;
+    transition: 0.2s all linear;
+
+    &::placeholder {
+        color: rgb(197, 197, 197);
+    }
+}
+
+.error {
+    box-shadow: 0 0 15px rgba($color: #e68181, $alpha: 0.8);
+    background: hsl(353, 29%, 16%);
+    border: 1px solid #e68181;
+}
+
+.customInput:disabled {
+    border: 2px solid grey;
+
+    &::placeholder {
+        color: grey;
+    }
+
+    &.error {
+        box-shadow: none !important;
+    }
+}

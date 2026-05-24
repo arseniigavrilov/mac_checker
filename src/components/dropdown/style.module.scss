@@ -1,0 +1,28 @@
+select {
+  font-family: "Roboto Mono", monospace;
+
+  width: 150px;
+
+  min-width: fit-content;
+  max-width: 320px;
+  background: hsl(214, 23%, 20%);
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.wrapper {
+
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-direction: column;
+  gap: 10px;
+
+  & p {
+    font-size: 18px;
+    color: white;
+  }
+}

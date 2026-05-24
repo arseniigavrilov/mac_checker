@@ -1,0 +1,40 @@
+{
+    "vendors": [
+        {
+            "vendor":"Выберите вендора", 
+            "mac":"",
+            "serial":"",
+            "hint":"",
+            "models": []
+        },
+        {
+            "vendor":"Vermax", 
+            "mac":"F8:F0:82",
+            "serial":"^UHD[A-Za-z0-9]{3}X2GN0\\d{5}$",
+            "hint":"у моделей Vermax, идут 3 цифры (напр. 250, 300)",
+            "models": ["UHD300X2G", "UHD250X2G"]
+        },
+        {
+            "vendor":"Imaqliq",
+            "mac":"CC:09:C8",
+            "serial":"^(?:[A-Za-z]){3}\\d{8}$",
+            "hint":"Серийный номер должен содержать модель из списка: WIH, WII, QIH, 2IL, 2IK, QIG, QLF, WLH, 2IM, 2IJ",
+            "models": ["Q-box", "G-box", "G-Box S.100", "G-box x.420"]
+            
+        },
+        {
+            "vendor":"TVIP",
+            "mac":"10:27:BE",
+            "serial":"^\\d{9}$",
+            "hint":"Серийный номер состоит из 9 цифр",
+            "models": ["S-BOX v.410", "S-BOX v.530", "S-BOX v.530 B", "S-BOX v.501"]
+        },
+        {
+            "vendor":"WRTECH",
+            "mac":"00:1F:0B",
+            "serial":"^330\\d{13}$",
+            "hint":"Серийный номер состоит из 16 цифр",
+            "models": ["WR330"]
+        }
+    ]
+}

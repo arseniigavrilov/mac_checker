@@ -28,16 +28,3 @@ export const VendorEnums = {
     TVIP: "TVIP",
     WRTECH: "WRTECH",
 }
-
-export const FilEnum = {
-    UFA: "Уфимский",
-    KAZAN: "Казанский",
-    NINO: "НиНо",
-    NORTH: "Северный куст",
-    SOUTH: "Южный куст",
-    WEST: "Западный куст",
-    MOSCOW: "Московский",
-    OREN: "Оренбургский",
-    ORSK: "Орский",
-    YOSHKAR: "Йошкар-Ола",
-};

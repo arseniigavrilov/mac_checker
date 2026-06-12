@@ -14,8 +14,8 @@
 }
 
 .rectangle {
-    max-width: 450px;
-    background: hsl(222, 24%, 11%);
+    width: 450px;
+    background: hsl(0, 0%, 20%);
 
     padding: 15px;
     display: flex;
@@ -24,7 +24,8 @@
     gap: 40px;
         flex-direction: column;
 
-    border: 1px solid white;
+    border: 2px solid rgb(41, 41, 41);
+    box-shadow: 0 0 10px rgba($color: #000000, $alpha: .2);
 
     border-radius: 15px;
 

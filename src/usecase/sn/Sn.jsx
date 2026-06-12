@@ -59,7 +59,7 @@ export default function SerialNumber ({
     }, [Trigger])
 
     return (
-        <div>
+        <div style={{"width": "100%"}}>
             <TextInput
                 Type={'text'}
                 Value={InputValue}

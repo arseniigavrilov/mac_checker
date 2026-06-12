@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import Style from "./style.module.scss";
 
 export default function Dropdown({
-    VendorData,
+    Data,
     SelectValue,
     OnChange,
     Title,
@@ -13,7 +14,7 @@ export default function Dropdown({
                 onChange={OnChange}
                 value={SelectValue}
             >
-                {VendorData?.map((item, i) => (
+                {Data?.map((item, i) => (
                     <option key={i} value={item}>
                         {item}
                     </option>

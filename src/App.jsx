@@ -6,9 +6,14 @@ import Dropdown from "./components/dropdown/dropdown"
 import ErrorScreen from "./components/errorScreen/ErrorScreen"
 import TextInput from "./components/text-input/textInput"
 import { useEffect, useState } from "react"
-import { VendorEnums, FilEnum } from "./entities/enums"
+import { VendorEnums } from "./entities/enums"
+import BranchesDataList from "./data/branches.json"
 
 function App() {
+  const Branches = Object.fromEntries(
+    BranchesDataList.branches.map(v => Object.entries(v)[0])
+  );
+
   const [vendor,SetVendor] = useState(VendorEnums.CHOICE)
   const [model,SetModel] = useState('')
   const [mac,SetMac] = useState('')
@@ -17,7 +22,7 @@ function App() {
   const [MacTrigger,SetMacTrigger] = useState(true)
   const [SNTrigger,SetSNTrigger] = useState(true)
   const [abon, SetAbon] = useState('')
-  const [fil, SetFil] = useState(FilEnum.UFA)
+  const [branch, SetBranch] = useState('')
 
   const VendorList = Vendors.vendors.map(item => item.vendor)
   const macByVendor = Object.fromEntries(
@@ -47,10 +52,6 @@ function App() {
     const inputModel = e.target.value
     SetModel(inputModel)
   }
-  const handleFilChange = (e) => {
-    const inputFil = e.target.value
-    SetFil(inputFil)
-  }
 
   useEffect(()=>{
     SetModel(modelsByVendor[vendor][0])
@@ -74,18 +75,37 @@ function App() {
   return (
     <div className={Style.content}>
       <div className={Style.rectangle}>
+        <TextInput
+            Type={'text'}
+            Value={branch}
+            Title={'Филиал'}
+            OnChange={(e) => SetBranch(e.target.value)}
+            Placeholder={'Населенный пункт'}
+            
+        />
+        <TextInput
+            Type={'text'}
+            Value={abon}
+            Title={'Договор'}
+            OnChange={(e) => SetAbon(e.target.value)}
+            Placeholder={'Договор'}
+        />
+      </div>
+      <div className={Style.rectangle}>
         <Dropdown 
           Title={"Приставка"}
-          VendorData={VendorList}
+          Data={VendorList}
           SelectValue={vendor}
           OnChange={handleVendorChange}
         />
         <Dropdown 
           Title={"Модель"}
-          VendorData={modelsByVendor[vendor]}
+          Data={modelsByVendor[vendor]}
           SelectValue={model}
           OnChange={handleModelChange}
         />
+      </div>
+      <div className={Style.rectangle}>
         <MacCheck
           MacFilter={macByVendor[vendor]}
           Trigger={MacTrigger}
@@ -97,6 +117,8 @@ function App() {
           InputFunc={SetMac}
           Hint={macByVendor[vendor] && ('MAC должен начинаться с ' + macByVendor[vendor])}
         />
+      </div>
+      <div className={Style.rectangle}>
         <SerialNumber
           SnRegex={new RegExp(snByVendor[vendor])}
           Hint={hintByVendor[vendor]}
@@ -112,28 +134,6 @@ function App() {
       <ErrorScreen
         Errors={error}
       />
-      <div className={Style.rectangle}>
-        <Dropdown
-            VendorData={Object.values(FilEnum)}
-            SelectValue={fil}
-            Title={'Филиал'}
-            OnChange={handleFilChange}
-            
-        />
-        <TextInput
-            Type={'text'}
-            Value={abon}
-            Title={'Договор'}
-            OnChange={(e) => SetAbon(e.target.value)}
-            Placeholder={'Впишите договор'}
-        />
-      </div>
-      <button
-        className={Style.form}
-        onClick={handleCopy}
-      >
-        Сформировать форму
-      </button>
     </div>
   )
 }

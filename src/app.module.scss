@@ -1,16 +1,31 @@
 .content {
-    width: 100%;
+    width: 950px;
     height: 100vh;
 
-    display: flex;
+    padding: 40px;
+
+    display: grid;
+
+    margin: 0 auto;
 
     justify-content: center;
     align-items: center;
+
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr); 
+    grid-auto-flow: column;
 
     flex-direction: column;
     gap: 20px;
 
     transition: 0.2s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    & :nth-child(6) {
+        grid-row: span 2 / span 2;
+        height: calc(100% - 5px);
+
+        margin-top: 5px;
+    }
 }
 
 .rectangle {
@@ -21,8 +36,8 @@
     display: flex;
     justify-content: center;
     align-items: first baseline;
-    gap: 40px;
-        flex-direction: column;
+    flex-direction: column;
+    gap: 15px;
 
     border: 2px solid rgb(41, 41, 41);
     box-shadow: 0 0 10px rgba($color: #000000, $alpha: .2);
@@ -48,4 +63,53 @@
   color: white;
   padding: 10px;
   cursor: pointer;
+}
+
+.tools {
+    width: max-content;
+    
+    display: flex;
+
+    gap: 10px;
+    position: absolute;
+
+    bottom: 20px;
+    left: 20px;
+
+
+    & a, button {
+        width: max-content;
+        height: 40px;
+        padding: 10px;
+        font-size: 16px;
+        color: white;
+        background: hsl(0, 0%, 24%);
+        border: 2px solid rgb(41, 41, 41);
+        border-radius: 10px;
+        list-style: none;
+        text-decoration: none;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        gap: 10px;
+
+        cursor: pointer;
+
+        transition: 0.2s all;
+
+        &:hover {
+            filter: brightness(0.8);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        & svg {
+            width: auto;
+            height: 20px;
+        }
+    }
 }

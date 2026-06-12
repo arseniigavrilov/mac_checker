@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MacErrors } from '../../entities/enums';
-import TextInput from '../../components/text-input/textInput';
+import TextInput from '../../components/textInput/textInput';
 import Style from './style.module.scss'
 
 export const validateMacErrors = (value, macRegex, vendorFilter = '') => {

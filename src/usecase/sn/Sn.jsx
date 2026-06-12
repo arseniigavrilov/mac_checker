@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SNErrors } from '../../entities/enums';
-import TextInput from '../../components/text-input/textInput';
+import TextInput from '../../components/textInput/textInput';
 
 export const validateSNErrors = (value, SNRegex) => {
   const errors = new Set();

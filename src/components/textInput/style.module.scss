@@ -44,6 +44,7 @@
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     font-family: "Roboto Mono", monospace;
     transition: 0.2s all linear;
+    position: relative;
 
     &::placeholder {
         color: rgb(197, 197, 197);

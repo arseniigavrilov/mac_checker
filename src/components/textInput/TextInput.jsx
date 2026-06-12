@@ -10,6 +10,7 @@ export default function TextInput ({
     Title,
     Disabled,
     Hint,
+    SetFocused,
 }) {
     const random15 = Math.random().toString().slice(2, 17);
 
@@ -28,6 +29,8 @@ export default function TextInput ({
                     className={[Style.customInput,(Error)? Style.error : ''].join(' ')}
                     disabled={Disabled}
                     placeholder={Placeholder}
+                    onFocus={() => SetFocused(true)}
+                    onBlurCapture={() => SetFocused(false)}
                 />
             </label>
             <p className={Style.hint}>{Hint}</p>

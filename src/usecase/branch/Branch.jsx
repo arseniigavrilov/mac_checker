@@ -1,58 +1,99 @@
-import React, { useEffect, useState } from 'react';
-import { MacErrors } from '../../entities/enums';
-import TextInput from '../../components/text-input/textInput';
+import React, { useEffect, useState, useMemo } from 'react';
+import TextInput from '../../components/textInput/textInput';
 import Style from './style.module.scss'
+import { RxCrossCircled } from "react-icons/rx";
 
-
-export default function MacCheck ({
-    MacFilter,
-    Trigger,
-    SetTrigger,
-    Errors,
-    SetErrors,
-    Placeholder,
+export default function BranchSearching ({
     InputValue,
     InputFunc,
-    Hint,
+    DataFilled,
+
 }) {
+    const [InputFocused, setFocused] = useState(false)
+    const [query, setQuery] = useState('');
+    const [selectedBranch, setBranch] = useState('')
 
-    const mac_regex = /^(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$/
+    const filteredData = useMemo(() => {
+        if (!query.trim()) return DataFilled;
 
-    const handleMacChange = (e) => {
-        let value = e.target.value.replace(/[^0-9A-Fa-f]/g, "").toUpperCase();
+        const lowerQuery = query.toLowerCase();
+        const result = {};
 
-        value = value.substring(0, 12);
+        for (const [branch, names] of Object.entries(DataFilled)) {
+            const matchedNames = names.filter((name) => 
+                name.toLowerCase().includes(lowerQuery)
+            );
 
-        const normalizedValue = value.match(/.{1,2}/g)?.join(":") || "";
+            matchedNames.sort((a, b) => {
+                const aStarts = a.toLowerCase().startsWith(lowerQuery);
+                const bStarts = b.toLowerCase().startsWith(lowerQuery);
+                
+                if (aStarts && !bStarts) return -1;
+                if (!aStarts && bStarts) return 1;
+                return 0; 
+            });
 
-        const macErrors = validateMacErrors(normalizedValue, mac_regex, MacFilter);
-        SetErrors(prev => updateMacErrors(prev, macErrors));
-        InputFunc(normalizedValue);
-    };
+            if (matchedNames.length > 0) {
+                result[branch] = matchedNames;
+            }
+        }
+
+        return result;
+    }, [query]);
 
     useEffect(() => {
-        if (Trigger) {
-            const macErrors = validateMacErrors(
-                InputValue,
-                mac_regex,
-                MacFilter,
-            );
-            SetErrors(prev => updateMacErrors(prev, macErrors));
-            SetTrigger(false)
+        if (selectedBranch !== '') {
+            InputFunc(selectedBranch)
         }
-    }, [Trigger])
+    }, [selectedBranch])
+    
+    useEffect(() => {
+        if (InputValue === '') {
+            setQuery('')
+            setBranch('')
+        }
+    }, [InputValue])
+
+    function Unselect() {
+        setBranch('')
+        InputFunc('')
+    }
+
+    function HandleInput(value) {
+        InputFunc(value)
+        setQuery(value)
+    }
 
     return (
         <div className={Style.content}>
+            <button 
+                className={[Style.unselect, (selectedBranch !== '') && Style.active].join(' ')}
+                onClick={() => Unselect()}
+            >
+                <RxCrossCircled />
+            </button>
             <TextInput
                 Type={'text'}
-                Value={InputValue}
-                Hint={Hint}
-                Title={'MAC-Адрес'}
-                OnChange={handleMacChange}
-                Error={Errors}
-                Placeholder={Placeholder}
+                Value={(selectedBranch !== '')? selectedBranch : InputValue}
+                Title={'Филиал'}
+                OnChange={(e) => HandleInput(e.target.value)}
+                Placeholder={'Населенный пункт'}
+                SetFocused={setFocused}
+                Disabled={selectedBranch}
             />
+            <ul 
+                id='search'
+                className={[Style.searchWrapper, InputFocused && Style.active].join(' ')}
+            >
+                {Object.entries(filteredData).map(([branch, names]) => (names.map((item, index) => (
+                    <li
+                        key={index}
+                        onClick={() => setBranch(branch)}
+                    >
+                        {item}
+                    </li>
+                ))))}
+            </ul>
         </div>
     );
 };

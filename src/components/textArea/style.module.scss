@@ -1,0 +1,73 @@
+.inputWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    width: 100%;
+    height: 100%;
+
+    & p {
+        font-size: 18px;
+        color: white;
+    }
+
+    & .hint {
+        font-size: 14px ;
+        color: grey;
+        text-align: left;
+    }
+
+    gap: 15px;
+}
+
+.inputLabel {
+    margin: 0;
+    padding: 10px 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    font-family: "Roboto Mono", monospace;
+    transition: 0.2s all linear;
+}
+
+.customInput {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background: hsl(0, 0%, 24%);
+    border: 2px solid rgb(41, 41, 41);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: "Roboto Mono", monospace;
+    transition: 0.2s all linear;
+    position: relative;
+    resize: none;
+
+    &::placeholder {
+        color: rgb(197, 197, 197);
+    }
+}
+
+.error {
+    box-shadow: 0 0 15px rgba($color: #e68181, $alpha: 0.8);
+    background: hsl(353, 29%, 16%);
+    border: 1px solid #e68181;
+}
+
+.customInput:disabled {
+
+    &::placeholder {
+        color: grey;
+    }
+
+    &.error {
+        box-shadow: none !important;
+    }
+}

@@ -10,6 +10,9 @@ import { VendorEnums } from "./entities/enums"
 import BranchesDataList from "./data/branches.json"
 import BranchSearching from "./usecase/branch/Branch"
 import CopyField from "./usecase/copyField/CopyField"
+import { IoEarth } from "react-icons/io5";
+import { FaRegTrashCan } from "react-icons/fa6";
+
 
 function App() {
   const Branches = Object.fromEntries(
@@ -158,12 +161,12 @@ function App() {
           href="https://docs.google.com/document/d/1VA0OTdqe1qgIgbZle-fpCZSoBkP9n_aprNjViVgveYY/edit?usp=drivesdk"
           target="_blank" 
         >
-          СОП
+          <IoEarth />СОП
         </a>
         <button
           onClick={() => handleReset()}
         >
-          Очистить все поля
+          <FaRegTrashCan />Очистить все поля
         </button>
       </div>
     </div>

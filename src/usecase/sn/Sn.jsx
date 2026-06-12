@@ -64,6 +64,7 @@ export default function SerialNumber ({
                 Type={'text'}
                 Value={InputValue}
                 Title={'Серийный номер (S/N)'}
+                Hint={Hint}
                 OnChange={handleSNChange}
                 Error={Errors}
                 Disabled={(SnRegex.toString() == '/(?:)/')}

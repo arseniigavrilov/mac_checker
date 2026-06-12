@@ -95,6 +95,7 @@ function App() {
           Placeholder={'MAC адрес устройства'}
           InputValue={mac}
           InputFunc={SetMac}
+          Hint={macByVendor[vendor] && ('MAC должен начинаться с ' + macByVendor[vendor])}
         />
         <SerialNumber
           SnRegex={new RegExp(snByVendor[vendor])}
@@ -108,11 +109,9 @@ function App() {
           InputFunc={SetSN}
         />
       </div>
-      <div className={[Style.rectangle, (error.size > 0)?Style.bad: Style.inactive].join(' ')}>
-        <ErrorScreen
-          Errors={error}
-        />
-      </div>
+      <ErrorScreen
+        Errors={error}
+      />
       <div className={Style.rectangle}>
         <Dropdown
             VendorData={Object.values(FilEnum)}

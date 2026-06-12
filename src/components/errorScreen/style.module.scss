@@ -9,6 +9,10 @@
     justify-content: baseline;
     align-items: baseline;
 
+    position: fixed;
+    
+    top: -460px;
+    right: 10px;
 
 
     transition: 0.4s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -16,12 +20,16 @@
     & p {
       width: 100%;
       text-align: left;  
+      font-size: 18px;
+      font-weight: bold;
+      color: rgb(216, 77, 77);
+
     }
 
-    & h2 {
-        font-size: 32px;
-    }
 
+    &.active {
+        top: 10px;
+    }
 }
 
 

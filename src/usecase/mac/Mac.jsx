@@ -41,6 +41,7 @@ export default function MacCheck ({
     Placeholder,
     InputValue,
     InputFunc,
+    Hint,
 }) {
 
     const mac_regex = /^(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}$/
@@ -74,6 +75,7 @@ export default function MacCheck ({
             <TextInput
                 Type={'text'}
                 Value={InputValue}
+                Hint={Hint}
                 Title={'MAC-Адрес'}
                 OnChange={handleMacChange}
                 Error={Errors}

@@ -9,6 +9,7 @@ export default function TextInput ({
     Error,
     Title,
     Disabled,
+    Hint,
 }) {
     const random15 = Math.random().toString().slice(2, 17);
 
@@ -29,6 +30,7 @@ export default function TextInput ({
                     placeholder={Placeholder}
                 />
             </label>
+            <p className={Style.hint}>{Hint}</p>
         </div>
     );
 };

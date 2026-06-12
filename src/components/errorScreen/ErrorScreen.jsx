@@ -24,7 +24,7 @@ export default function ErrorScreen ({
         return Object.values(ErrorList).find(err => err.id === id)?.text;
     };
     return (
-        <div className={Style.wrapper}>
+        <div className={[Style.wrapper, (Errors.size > 0)? Style.active: ''].join(' ')}>
             {[...Errors].map((item, i) => (
                 <p key={i}>
                     • {getErrorTextById(item)}
